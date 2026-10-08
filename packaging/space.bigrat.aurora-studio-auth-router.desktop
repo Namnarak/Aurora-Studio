@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Aurora Studio Sign-In Router
+GenericName=Roblox Studio authentication callback
+Comment=Route Roblox Studio sign-in callbacks through Aurora Studio
+Exec=aurora_studio %u
+Icon=space.bigrat.aurora-studio
+NoDisplay=true
+Terminal=false
+StartupNotify=false
+MimeType=x-scheme-handler/roblox-studio-auth;
+X-Aurora-Managed=true

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2026 Aurora Project Authors -->
+<!-- SPDX-License-Identifier: CC0-1.0 -->
+<component type="desktop-application">
+  <id>space.bigrat.aurora-studio</id>
+  <name>Aurora Studio</name>
+  <summary>Launch Roblox Studio on Linux with Wine</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only AND Apache-2.0</project_license>
+  <developer id="namnarak">
+    <name>Namnarak</name>
+  </developer>
+  <url type="homepage">https://github.com/Namnarak/Aurora-Studio</url>
+  <description>
+    <p>Launch Roblox Studio on Linux through its own managed Wine runtime.</p>
+    <p>Aurora Studio is an independent project and does not include Roblox Studio.</p>
+  </description>
+  <launchable type="desktop-id">space.bigrat.aurora-studio.desktop</launchable>
+  <provides>
+    <binary>aurora_studio</binary>
+    <binary>aurora_studio_runtime</binary>
+    <binary>aurora_studio_mcp</binary>
+    <binary>aurora_studio_control_mcp</binary>
+  </provides>
+</component>

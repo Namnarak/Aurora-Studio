@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-only
+#
+# Local Roblox Studio MCP launcher for Aurora's managed Studio runtime.
+# The Studio payload owns the MCP protocol; this script only resolves the
+# active Wine runtime and the newest StudioMCP.exe from Aurora-owned data.
+
+set -euo pipefail
+
+# Prefer Aurora's shell-free native launcher. The MCP host owns the stdio
+# lifecycle and will restart the command after a transport exit; keeping a
+# dead StudioMCP supervisor alive makes the host miss the next handshake.
+script_dir="$(cd -P -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+native_launcher="${AURORA_STUDIO_MCP_LAUNCHER:-}"
+if [[ -z "$native_launcher" ]]; then
+    for candidate in \
+        "$script_dir/../bin/aurora_studio_mcp" \
+        "$script_dir/../build/aurora_studio_mcp" \
+        "$(command -v aurora_studio_mcp 2>/dev/null || true)"; do
+        if [[ -x "$candidate" ]]; then
+            native_launcher="$candidate"
+            break
+        fi
+    done
+fi
+if [[ -x "$native_launcher" ]]; then
+    exec "$native_launcher" "$@"
+fi
+
+# Source-tree fallback for installations that have not built the native
+# launcher yet. It still exits with StudioMCP so the MCP host can reconnect.
+if [[ -n "${XDG_DATA_HOME:-}" ]]; then
+    aurora_data="${XDG_DATA_HOME}/aurora"
+else
+    [[ -n "${HOME:-}" ]] || {
+        printf 'Roblox Studio MCP: HOME or XDG_DATA_HOME is required\n' >&2
+        exit 127
+    }
+    aurora_data="${HOME}/.local/share/aurora"
+fi
+studio_runtime="${AURORA_STUDIO_RUNTIME_DATA:-$aurora_data/studio-runtime}"
+versions="$studio_runtime/versions"
+wine_bin="${AURORA_ROBLOX_WINE:-$studio_runtime/wine/bin/wine}"
+wine_prefix="${AURORA_STUDIO_WINEPREFIX:-${AURORA_ROBLOX_WINEPREFIX:-$aurora_data/studio-prefix}}"
+studio_mcp="${AURORA_ROBLOX_STUDIO_MCP:-}"
+
+if [[ ! -x "$wine_bin" && -z "${AURORA_ROBLOX_WINE:-}" ]]; then
+    wine_bin="$(command -v wine 2>/dev/null || true)"
+fi
+
+if [[ -z "$studio_mcp" ]]; then
+    studio_mcp="$(find "$versions" -maxdepth 2 -type f -name StudioMCP.exe -printf '%T@ %p\n' 2>/dev/null | sort -nr | sed -n '1s/^[^ ]* //p')"
+fi
+
+if [[ -z "$wine_bin" || ! -x "$wine_bin" ]]; then
+    printf 'Roblox Studio MCP: Wine runtime not found in Aurora Studio runtime or PATH\n' >&2
+    exit 127
+fi
+
+if [[ ! -f "$studio_mcp" ]]; then
+    printf 'Roblox Studio MCP: StudioMCP.exe not found under %s\n' "$versions" >&2
+    exit 127
+fi
+
+exec env \
+    WINEPREFIX="$wine_prefix" \
+    WINEDEBUG="${WINEDEBUG:--all}" \
+    WINELOADERNOEXEC="${WINELOADERNOEXEC:-1}" \
+    "$wine_bin" "$studio_mcp" "$@"

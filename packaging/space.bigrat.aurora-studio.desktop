@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=Aurora Studio
+GenericName=Roblox Studio launcher and settings
+Comment=Configure Roblox Studio and launch it through Aurora
+Exec=aurora_studio --settings %u
+Icon=space.bigrat.aurora-studio
+# Wine exposes the Roblox Studio child as RobloxStudioBeta.exe. Matching that
+# window lets KDE use Aurora's desktop icon for the real Studio window.
+StartupWMClass=RobloxStudioBeta.exe
+Categories=Development;
+Terminal=false
+MimeType=application/x-roblox-place;application/x-roblox-model;x-scheme-handler/roblox-studio;
+X-Aurora-Managed=true
