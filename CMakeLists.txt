@@ -871,6 +871,7 @@ set(CPACK_DEBIAN_PACKAGE_SECTION "games")
 set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
 set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Launches Roblox Studio on Linux with Wine.\n\nLicense: GPL-3.0-only AND Apache-2.0. See the installed LICENSE, LICENSE-APACHE, and APACHE-FILES.txt.")
 set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libadwaita-1-0, libcapstone5, libc6 (>= 2.38), libcurl4t64 | libcurl4, libelf1t64 | libelf1, libglib2.0-0t64 | libglib2.0-0, libgtk-4-1, libminizip1t64 | libminizip1, libssl3t64 | libssl3, libstdc++6, libvulkan1, libyaml-0-2, zlib1g")
 
 set(CPACK_RPM_FILE_NAME RPM-DEFAULT)
 set(CPACK_RPM_PACKAGE_LICENSE "GPL-3.0-only AND Apache-2.0 AND MIT AND BSD-2-Clause AND BSD-2-Clause-FreeBSD AND BSD-3-Clause AND BSD-4-Clause AND GPL-2.0-only WITH Classpath-exception-2.0")
