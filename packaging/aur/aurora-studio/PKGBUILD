@@ -1,0 +1,22 @@
+# Maintainer: Namnarak
+pkgname=aurora-studio
+pkgver=1.0.0
+pkgrel=1
+pkgdesc='Aurora Studio Roblox Studio launcher for Linux'
+arch=('x86_64')
+url='https://github.com/Namnarak/Aurora-Studio'
+license=('GPL-3.0-only' 'Apache-2.0')
+depends=('gtk4' 'libadwaita' 'webkitgtk-6.0' 'sdl3' 'sdl3_ttf' 'curl' 'openssl' 'libyaml' 'minizip' 'capstone' 'libplacebo' 'libelf' 'vulkan-icd-loader' 'glib2')
+makedepends=('git' 'cmake' 'ninja' 'gcc' 'pkgconf' 'vulkan-headers' 'nlohmann-json' 'lld')
+optdepends=('wine: Wine runtime to start Roblox Studio')
+conflicts=('aurora-studio-git' 'aurora-studio-bin')
+source=("git+https://github.com/Namnarak/Aurora-Studio.git#tag=${pkgver}")
+sha256sums=('SKIP')
+build() {
+  cmake -S Aurora-Studio -B build -G Ninja -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DBUILD_TESTING=OFF
+  cmake --build build --parallel 4
+}
+package() {
+  DESTDIR="${pkgdir}" cmake --install build
+}

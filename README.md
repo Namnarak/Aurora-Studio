@@ -12,6 +12,10 @@ not included in this source repository.
 Aurora Studio is an independent community project. It is not affiliated with
 Roblox Corporation and does not distribute Roblox Studio.
 
+## Packages
+
+[Stable/Nightly downloads](https://github.com/Namnarak/Aurora-Studio/releases) | [Packaging details](docs/DISTRIBUTION.md)
+
 ## Build
 
 The build uses CMake, Ninja, a C++17 compiler, pkg-config, GTK 4, libadwaita,

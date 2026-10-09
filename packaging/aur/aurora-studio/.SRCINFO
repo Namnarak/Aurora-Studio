@@ -1,0 +1,37 @@
+pkgbase = aurora-studio
+	pkgdesc = Aurora Studio Roblox Studio launcher for Linux
+	pkgver = 1.0.0
+	pkgrel = 1
+	url = https://github.com/Namnarak/Aurora-Studio
+	arch = x86_64
+	license = GPL-3.0-only
+	license = Apache-2.0
+	makedepends = git
+	makedepends = cmake
+	makedepends = ninja
+	makedepends = gcc
+	makedepends = pkgconf
+	makedepends = vulkan-headers
+	makedepends = nlohmann-json
+	makedepends = lld
+	depends = gtk4
+	depends = libadwaita
+	depends = webkitgtk-6.0
+	depends = sdl3
+	depends = sdl3_ttf
+	depends = curl
+	depends = openssl
+	depends = libyaml
+	depends = minizip
+	depends = capstone
+	depends = libplacebo
+	depends = libelf
+	depends = vulkan-icd-loader
+	depends = glib2
+	optdepends = wine: Wine runtime to start Roblox Studio
+	conflicts = aurora-studio-git
+	conflicts = aurora-studio-bin
+	source = git+https://github.com/Namnarak/Aurora-Studio.git#tag=1.0.0
+	sha256sums = SKIP
+
+pkgname = aurora-studio

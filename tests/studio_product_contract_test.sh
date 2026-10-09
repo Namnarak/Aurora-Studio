@@ -21,8 +21,8 @@ test -f "${ROOT}/LICENSES/APACHE-FILES.txt" || fail 'Apache file inventory is mi
 test -f "${ROOT}/LICENSES/DISTRIBUTION-LICENSES.md" || fail 'distribution license summary is missing'
 test -s "${ROOT}/third_party/jni/ASSEMBLY_EXCEPTION" || fail 'JNI Assembly Exception source notice is missing'
 grep -Fq 'set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSES/DISTRIBUTION-LICENSES.md")' "${ROOT}/CMakeLists.txt" || fail 'CPack license summary is wrong'
-test ! -e "${ROOT}/packaging/flatpak" || fail 'Player Flatpak metadata remains in Studio'
-test ! -e "${ROOT}/packaging/aur" || fail 'Player AUR metadata remains in Studio'
+test -f "${ROOT}/packaging/flatpak/space.bigrat.aurora-studio.json" || fail 'Studio Flatpak manifest missing'
+test -d "${ROOT}/packaging/aur/aurora-studio" || fail 'Studio AUR recipes missing'
 test ! -e "${ROOT}/flake.nix" || fail 'Player Nix packaging remains in Studio'
 test ! -e "${ROOT}/src/player/aurora_player.cc" || fail 'Player launcher source remains in Studio'
 test ! -e "${ROOT}/src/update/apkcombo_provider.cc" || fail 'Player APKCombo source remains in Studio'
@@ -37,7 +37,7 @@ if grep -Fq 'submodules:' "${ROOT}/.github/workflows/ci.yml"; then
 fi
 test ! -e "${ROOT}/tests/system_install_test.sh" || fail 'combined product install test remains'
 test ! -d "${ROOT}/patches" || [[ -z "$(find "${ROOT}/patches" -type f -print -quit)" ]] || fail 'unlicensed local patch stack remains'
-if find "${ROOT}/.github/workflows" -maxdepth 1 -type f ! -name ci.yml -print -quit | grep -q .; then
-  fail 'non-CI workflow remains in the publication candidate'
+if find "${ROOT}/.github/workflows" -maxdepth 1 -type f ! -name ci.yml ! -name distribution.yml ! -name aur-check.yml -print -quit | grep -q .; then
+  fail 'unknown Studio workflow remains in the publication candidate'
 fi
 printf 'Aurora Studio product contract passed\n'
