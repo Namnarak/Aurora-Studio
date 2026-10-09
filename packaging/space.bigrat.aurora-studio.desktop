@@ -11,10 +11,4 @@ StartupWMClass=RobloxStudioBeta.exe
 Categories=Development;
 Terminal=false
 MimeType=application/x-roblox-place;application/x-roblox-model;x-scheme-handler/roblox-studio;
-Actions=Settings;
-
-[Desktop Action Settings]
-Name=Aurora Studio Settings
-Exec=aurora_studio --settings
-
 X-Aurora-Managed=true

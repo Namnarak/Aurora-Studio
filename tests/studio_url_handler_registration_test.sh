@@ -74,7 +74,8 @@ auth_desktop="$applications/space.bigrat.aurora-studio-auth-router.desktop"
 [[ -f "$studio_desktop" && ! -L "$studio_desktop" ]]
 [[ -f "$auth_desktop" && ! -L "$auth_desktop" ]]
 grep -Fxq "Exec=$studio_binary %u" "$studio_desktop"
-grep -Fxq "Exec=$studio_binary --settings" "$studio_desktop"
+! grep -Fq 'Actions=Settings;' "$studio_desktop"
+! grep -Fq '[Desktop Action Settings]' "$studio_desktop"
 [[ ! -e "$applications/space.bigrat.aurora-studio-settings.desktop" ]]
 grep -Fxq 'MimeType=application/x-roblox-place;application/x-roblox-model;x-scheme-handler/roblox-studio;' "$studio_desktop"
 ! grep -Fq 'x-scheme-handler/roblox-studio-auth' "$studio_desktop"
