@@ -1,4 +1,19 @@
-# Aurora Studio
+<!-- CYTECH_README_REFRESH:START -->
+<div align="center">
+
+<a href="https://github.com/Namnarak/Aurora-Studio"><img width="100%" alt="Aurora Studio banner" src="https://capsule-render.vercel.app/api?type=waving&color=0:19112C,100:A855F7&height=210&section=header&text=Aurora%20Studio&fontSize=43&fontColor=ffffff&fontAlignY=36&desc=Roblox%20Studio%20on%20Linux%2C%20powered%20by%20Wine&descAlignY=59&descSize=16"></a>
+
+<img alt="PROJECT: Developer Tools" src="https://img.shields.io/badge/PROJECT-Developer%20Tools-A855F7?style=flat-square&labelColor=19112C&color=A855F7"> <img alt="STACK: Wine · C++17" src="https://img.shields.io/badge/STACK-Wine%20%C2%B7%20C%2B%2B17-A855F7?style=flat-square&labelColor=19112C&color=A855F7">
+
+<p><strong>Roblox Studio on Linux, powered by Wine</strong></p>
+
+<a href="https://github.com/Namnarak/Aurora-Studio/releases">Releases</a> · <a href="https://github.com/Namnarak/Aurora-Studio/issues">Issues</a> · <a href="https://github.com/Namnarak/Aurora-Studio">Source</a>
+
+</div>
+
+<!-- CYTECH_README_REFRESH:END -->
+
+---
 
 [![CI](https://github.com/Namnarak/Aurora-Studio/actions/workflows/ci.yml/badge.svg)](https://github.com/Namnarak/Aurora-Studio/actions/workflows/ci.yml)
 [![License: GPL-3.0-only](https://img.shields.io/badge/license-GPL--3.0--only-blue.svg)](LICENSE)
