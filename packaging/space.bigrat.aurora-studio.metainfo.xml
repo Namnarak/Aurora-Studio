@@ -15,7 +15,14 @@
     <p>Aurora Studio provides a Linux desktop interface for launching Roblox Studio using a managed Wine runtime, with isolated settings and installation paths.</p>
     <p>Aurora Studio is an independent project and does not include Roblox Studio.</p>
   </description>
-  <releases><release version="1.0.0" date="2026-10-09"/></releases>
+  <releases>
+    <release version="1.0.4" date="2026-10-09">
+      <description>
+        <p>Launch Roblox Studio directly from the Aurora Studio application entry. Open Settings from that entry's context menu.</p>
+      </description>
+    </release>
+    <release version="1.0.0" date="2026-10-09"/>
+  </releases>
   <launchable type="desktop-id">space.bigrat.aurora-studio.desktop</launchable>
   <provides>
     <binary>aurora_studio</binary>
