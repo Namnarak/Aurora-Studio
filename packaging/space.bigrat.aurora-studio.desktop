@@ -16,6 +16,5 @@ Actions=Settings;
 [Desktop Action Settings]
 Name=Aurora Studio Settings
 Exec=aurora_studio --settings
-Icon=space.bigrat.aurora-studio
 
 X-Aurora-Managed=true

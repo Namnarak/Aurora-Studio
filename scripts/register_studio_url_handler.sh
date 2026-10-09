@@ -153,11 +153,13 @@ auth_desktop_source="$(ResolveRegularFile "${auth_desktop_source}" "auth-router 
 [[ "$(grep -Fxc '[Desktop Entry]' "${desktop_source}")" == 1 &&
    "$(grep -Fxc 'Type=Application' "${desktop_source}")" == 1 &&
    "$(grep -Fxc 'Icon=space.bigrat.aurora-studio' "${desktop_source}")" == 1 &&
-   "$(grep -Fxc 'Exec=aurora_studio --settings %u' "${desktop_source}")" == 1 &&
+   "$(grep -Fxc 'Exec=aurora_studio %u' "${desktop_source}")" == 1 &&
+   "$(grep -Fxc '[Desktop Action Settings]' "${desktop_source}")" == 1 &&
+   "$(grep -Fxc 'Exec=aurora_studio --settings' "${desktop_source}")" == 1 &&
    "$(grep -Fxc 'MimeType=application/x-roblox-place;application/x-roblox-model;x-scheme-handler/roblox-studio;' \
        "${desktop_source}")" == 1 &&
    "$(grep -Fxc 'X-Aurora-Managed=true' "${desktop_source}")" == 1 &&
-   "$(grep -c '^Exec=' "${desktop_source}")" == 1 ]] ||
+   "$(grep -c '^Exec=' "${desktop_source}")" == 2 ]] ||
   Die "desktop template does not match the Aurora Studio URL-handler contract"
 
 [[ "$(grep -Fxc '[Desktop Entry]' "${auth_desktop_source}")" == 1 &&
@@ -200,8 +202,10 @@ fi
 temporary="$(mktemp "${applications_dir}/.${DESKTOP_ID}.XXXXXX.desktop")"
 trap 'rm -f -- "${temporary}"' EXIT
 while IFS= read -r line || [[ -n "${line}" ]]; do
-  if [[ "${line}" == 'Exec=aurora_studio --settings %u' ]]; then
-    printf 'Exec=%s --settings %%u\n' "${studio_executable}"
+  if [[ "${line}" == 'Exec=aurora_studio %u' ]]; then
+    printf 'Exec=%s %%u\n' "${studio_executable}"
+  elif [[ "${line}" == 'Exec=aurora_studio --settings' ]]; then
+    printf 'Exec=%s --settings\n' "${studio_executable}"
   else
     printf '%s\n' "${line}"
   fi
@@ -213,8 +217,10 @@ if command -v desktop-file-validate >/dev/null 2>&1; then
 fi
 mv -f -- "${temporary}" "${desktop_target}"
 trap - EXIT
-grep -Fxq "Exec=${studio_executable} --settings %u" "${desktop_target}" ||
-  Die "generated desktop entry has the wrong Settings launcher"
+grep -Fxq "Exec=${studio_executable} %u" "${desktop_target}" ||
+  Die "generated desktop entry has the wrong Studio launcher"
+grep -Fxq "Exec=${studio_executable} --settings" "${desktop_target}" ||
+  Die "generated desktop entry has the wrong Settings action"
 
 legacy_settings_target="${applications_dir}/${LEGACY_SETTINGS_DESKTOP_ID}"
 if [[ -e "${legacy_settings_target}" || -L "${legacy_settings_target}" ]]; then

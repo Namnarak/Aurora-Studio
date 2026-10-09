@@ -43,7 +43,8 @@ grep -Fq 'Usage: aurora_studio_runtime' <<<"${runtime_usage}"
 [[ -f "${desktop}" ]]
 grep -Fq 'Name=Aurora Studio' "${desktop}"
 grep -Fxq 'Icon=space.bigrat.aurora-studio' "${desktop}"
-grep -Fxq 'Exec=aurora_studio --settings %u' "${desktop}"
+grep -Fxq 'Exec=aurora_studio %u' "${desktop}"
+grep -Fxq 'Exec=aurora_studio --settings' "${desktop}"
 [[ -f "${auth_desktop}" ]]
 grep -Fq 'Name=Aurora Studio Sign-In Router' "${auth_desktop}"
 [[ -f "${metainfo}" ]]
