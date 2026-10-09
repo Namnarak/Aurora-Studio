@@ -3,6 +3,8 @@
 
 <a href="https://github.com/Namnarak/Aurora-Studio"><img width="100%" alt="Aurora Studio banner" src="https://capsule-render.vercel.app/api?type=waving&color=0:19112C,100:A855F7&height=210&section=header&text=Aurora%20Studio&fontSize=43&fontColor=ffffff&fontAlignY=36&desc=Roblox%20Studio%20on%20Linux%2C%20powered%20by%20Wine&descAlignY=59&descSize=16"></a>
 
+<p><img src="packaging/aurora-studio-logo.png" alt="Aurora-Studio logo" width="136" /></p>
+
 <img alt="PROJECT: Developer Tools" src="https://img.shields.io/badge/PROJECT-Developer%20Tools-A855F7?style=flat-square&labelColor=19112C&color=A855F7"> <img alt="STACK: Wine · C++17" src="https://img.shields.io/badge/STACK-Wine%20%C2%B7%20C%2B%2B17-A855F7?style=flat-square&labelColor=19112C&color=A855F7">
 
 <p><strong>Roblox Studio on Linux, powered by Wine</strong></p>
@@ -87,3 +89,19 @@ Aurora Player is maintained separately in
 [Namnarak/Aurora-Player](https://github.com/Namnarak/Aurora-Player).
 
 Read the [Terms of Use](TERMS.md) and [Privacy Policy](PRIVACY.md) before use.
+
+---
+
+<!-- CYTECH_STAR_HISTORY:START -->
+
+## Star History
+
+<a href="https://star-history.dera.page/#Namnarak/Aurora-Studio&type=date&legend=top-left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=Namnarak/Aurora-Studio&type=date&legend=top-left&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=Namnarak/Aurora-Studio&type=date&legend=top-left" />
+    <img alt="GitHub star history for Namnarak/Aurora-Studio" src="https://star-history.dera.page/svg?repos=Namnarak/Aurora-Studio&type=date&legend=top-left" width="800" />
+  </picture>
+</a>
+
+<!-- CYTECH_STAR_HISTORY:END -->
