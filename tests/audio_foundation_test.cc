@@ -613,6 +613,13 @@ TEST(OpenSlQueueTest, GetStatePollsWhilePlaybackReleasesBuffers) {
     }
   });
 
+  // A fresh poller may be scheduled after the fast playback callback.
+  // Allow it to execute at least once before testing concurrent drainage.
+  const auto poll_deadline = std::chrono::steady_clock::now() + 2s;
+  while (polls.load(std::memory_order_relaxed) == 0 &&
+         std::chrono::steady_clock::now() < poll_deadline) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
   const std::vector<std::int16_t> samples(32 * 2, 321);
   ASSERT_EQ((*queue)->Enqueue(queue, samples.data(),
                               static_cast<opensl_abi::Uint32>(
